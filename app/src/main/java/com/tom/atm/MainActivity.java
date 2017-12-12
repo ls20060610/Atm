@@ -40,10 +40,14 @@ public class MainActivity extends AppCompatActivity {
                     String name = data.getStringExtra("nick name");
                     String phone = data.getStringExtra("phonenumber");
                     Toast.makeText(this, "Nickname : " + name, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, "Phonenumber" + phone, Toast.LENGTH_SHORT).show();
-                    break;
+                    Toast.makeText(this, "Phonenumber :" + phone, Toast.LENGTH_SHORT).show();
+                    getSharedPreferences("info" , MODE_PRIVATE)
+                            .edit()
+                            .putString("Name" , name)
+                            .putString("Number" , phone)
+                            .apply();
                 }
-
+                break;
 
         }
 
