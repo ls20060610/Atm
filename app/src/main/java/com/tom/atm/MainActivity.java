@@ -10,26 +10,44 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    private final static int REQUEST_USERINFO = 105;
     private final static int REQUEST_LOGIN = 102;
     boolean logon = false;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_LOGIN){
-            if(resultCode == RESULT_OK){
-            String userid = data.getStringExtra("LOGIN_USERID");
-            String passwd = data.getStringExtra("LOGIN_PASSWD");
-                Log.d("RESULT", userid + "/" + passwd);
-            }else{
-                finish();
-            }
-        }
-    }
+        switch (requestCode) {
+            case REQUEST_LOGIN:
+                if (resultCode == RESULT_OK) {
+                    String userid = data.getStringExtra("LOGIN_USERID");
+                    String passwd = data.getStringExtra("LOGIN_PASSWD");
+                    Toast.makeText(this, "Login userid:" + userid, Toast.LENGTH_SHORT).show();
+                    getSharedPreferences("atm",MODE_PRIVATE)
+                            .edit()
+                            .putString("USERID",userid)
+                            .apply();
+                    Log.d("RESULT", userid + "/" + passwd);
+                } else {
+                    finish();
+                }
+                break;
+            case REQUEST_USERINFO:
+                if (resultCode == RESULT_OK) {
+                    String name = data.getStringExtra("nick name");
+                    String phone = data.getStringExtra("phonenumber");
+                    Toast.makeText(this, "Nickname : " + name, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Phonenumber" + phone, Toast.LENGTH_SHORT).show();
+                    break;
+                }
 
+
+        }
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +64,15 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, UserInfoActivity.class);
+                startActivityForResult(i , REQUEST_USERINFO);
+            //    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            //            .setAction("Action", null).show();
             }
         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
