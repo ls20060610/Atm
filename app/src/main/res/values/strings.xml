@@ -3,12 +3,18 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_user_info">Sign in</string>
 
-    <string-array name ="ages">
+    <string-array name="ages">
         <item>15</item>
         <item>16</item>
         <item>17</item>
         <item>18</item>
     </string-array>
+    <string-array name="city">
+        <item>基隆市</item>
+        <item>台北市</item>
+        <item>新北市</item>
+    </string-array>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

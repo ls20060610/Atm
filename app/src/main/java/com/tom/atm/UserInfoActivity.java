@@ -1,5 +1,6 @@
 package com.tom.atm;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,7 +50,10 @@ public class UserInfoActivity extends AppCompatActivity {
         finish();
     }
 
-
+    public void address(View view){
+           Intent i = new Intent(this , CityActivity.class);
+           startActivity(i);
+    }
 
 
 
