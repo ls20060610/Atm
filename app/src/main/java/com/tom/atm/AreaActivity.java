@@ -49,8 +49,11 @@ public class AreaActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
         getIntent().putExtra("AREA",area1[position]);
         getIntent().putExtra("AREA",area2[position]);
         getIntent().putExtra("AREA",area3[position]);
+        setResult(RESULT_OK,getIntent());
+        finish();
     }
 }

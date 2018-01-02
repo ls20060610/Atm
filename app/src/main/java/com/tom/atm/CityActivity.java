@@ -15,6 +15,15 @@ public class CityActivity extends AppCompatActivity implements AdapterView.OnIte
     private static final String TAG = CityActivity.class.getSimpleName();
     private String[] city2;
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_LOGIN)
+            if (resultCode == RESULT_OK){
+
+
+            }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
